@@ -2,7 +2,7 @@ package az.developia.nov30.imagehistoryapp.model;
 
 import java.time.LocalDate;
 
-public class Image {
+public class ImageModel {
 	private Integer id;
 	private String path;
 	private LocalDate insertDate;
@@ -10,11 +10,11 @@ public class Image {
 
 	// CTRL + SHIFT + F Code Format
 
-	public Image() {
+	public ImageModel() {
 		super();
 	}
 
-	public Image(String path, LocalDate insertDate, Integer timesUsed) {
+	public ImageModel(String path, LocalDate insertDate, Integer timesUsed) {
 		super();
 		this.path = path;
 		this.insertDate = insertDate;
