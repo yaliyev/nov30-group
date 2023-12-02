@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="448.0" prefWidth="652.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="az.developia.nov30.imagehistoryapp.controller.ImageHistoryController">
    <children>
@@ -12,6 +14,20 @@
             <Image url="@../resources/default_question.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="chooseImageButton" layoutX="280.0" layoutY="265.0" mnemonicParsing="false" onAction="#chooseImageButtonClicked" text="Choose Image" />
+      <Button fx:id="chooseImageButton" layoutX="163.0" layoutY="261.0" mnemonicParsing="false" onAction="#chooseImageButtonClicked" style="-fx-background-color: red; -fx-background-radius: 5px;" text="Choose Image" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <padding>
+            <Insets bottom="8.0" left="15.0" right="15.0" top="8.0" />
+         </padding></Button>
+      <Button fx:id="historyButton" layoutX="388.0" layoutY="261.0" mnemonicParsing="false" onAction="#historyButtonClicked" style="-fx-background-color: green; -fx-background-radius: 5px;" text="History" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <padding>
+            <Insets bottom="8.0" left="15.0" right="15.0" top="8.0" />
+         </padding>
+      </Button>
    </children>
 </AnchorPane>

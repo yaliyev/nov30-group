@@ -16,6 +16,9 @@ public class ImageHistoryController {
 
 	@FXML
 	private Button chooseImageButton;
+	
+	@FXML
+	private Button historyButton;
 
 	@FXML
 	private void chooseImageButtonClicked(ActionEvent event) {
@@ -24,6 +27,11 @@ public class ImageHistoryController {
 	
 		Image image = new Image(selectedFile.getAbsolutePath());
 		appImage.setImage(image);
+	}
+	
+	@FXML
+	private void historyButtonClicked(ActionEvent event) {
+		
 	}
 
 }
