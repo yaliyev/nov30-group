@@ -1,16 +1,22 @@
 package az.developia.nov30.imagehistoryapp.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 
+import az.developia.nov30.imagehistoryapp.ImageHistoryFXApplicationClass;
 import az.developia.nov30.imagehistoryapp.model.ImageModel;
 import az.developia.nov30.imagehistoryapp.repository.ImageRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 public class ImageHistoryController {
 
@@ -50,6 +56,26 @@ public class ImageHistoryController {
 	
 	@FXML
 	private void historyButtonClicked(ActionEvent event) {
+		Stage historyTableStage = new Stage();
+		
+		try {
+			AnchorPane historyTablePane = FXMLLoader.load(getClass().getClassLoader().getResource("az/developia/nov30/imagehistoryapp/view/historyWindow.fxml"));
+			
+			Scene historyTableScene = new Scene(historyTablePane);
+			
+			historyTableStage.setScene(historyTableScene);
+			
+			historyTableStage.setTitle("History Table");
+			
+			ImageHistoryFXApplicationClass.globalMainStage.hide(); // optional
+			
+			historyTableStage.show();
+			
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="654.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView layoutX="-1.0" layoutY="67.0" prefHeight="406.0" prefWidth="654.0">
+        <columns>
+          <TableColumn prefWidth="82.39999008178711" text="ID" />
+          <TableColumn prefWidth="208.00001525878906" text="Path" />
+            <TableColumn prefWidth="232.79998779296875" text="Insert Date" />
+            <TableColumn minWidth="6.4000244140625" prefWidth="84.80010986328125" text="Times used" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
