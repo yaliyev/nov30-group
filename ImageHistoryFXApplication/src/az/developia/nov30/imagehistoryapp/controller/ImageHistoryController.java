@@ -39,6 +39,8 @@ public class ImageHistoryController {
 		Image image = new Image(selectedFile.getAbsolutePath());
 		appImage.setImage(image);
 		
+		
+		
 		ImageModel repositoryImage = new ImageModel();
 		System.out.println(image.getUrl().toString());
 		String pathUrl = image.getUrl().toString();
@@ -49,8 +51,18 @@ public class ImageHistoryController {
 		repositoryImage.setInsertDate(LocalDate.now());
 		repositoryImage.setTimesUsed(1);
 		
+		ImageModel alreadyAddedImage = imageRepository.findByPath(pathUrl);
 		
-		imageRepository.insertImage(repositoryImage);
+		if(alreadyAddedImage != null) {
+				
+			imageRepository.editImageTimesUsed(alreadyAddedImage.getId(), alreadyAddedImage.getTimesUsed() + 1);
+		}else {
+			System.out.println(repositoryImage);
+			imageRepository.insertImage(repositoryImage);	
+		}
+		
+		
+		
 		
 	}
 	

@@ -3,6 +3,7 @@ package az.developia.nov30.imagehistoryapp;
 import java.io.IOException;
 
 import az.developia.nov30.imagehistoryapp.connection.JDBCConnection;
+import az.developia.nov30.imagehistoryapp.repository.ImageRepository;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

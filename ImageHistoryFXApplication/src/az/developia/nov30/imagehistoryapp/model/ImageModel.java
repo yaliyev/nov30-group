@@ -53,4 +53,12 @@ public class ImageModel {
 		this.timesUsed = timesUsed;
 	}
 
+	@Override
+	public String toString() {
+		return "ImageModel [id=" + id + ", path=" + path + ", insertDate=" + insertDate + ", timesUsed=" + timesUsed
+				+ "]";
+	}
+	
+	
+
 }
