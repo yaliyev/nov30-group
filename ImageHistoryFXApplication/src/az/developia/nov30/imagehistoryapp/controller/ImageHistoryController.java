@@ -81,6 +81,8 @@ public class ImageHistoryController {
 			
 			ImageHistoryFXApplicationClass.globalMainStage.hide(); // optional
 			
+			ImageHistoryWindowController.historyTableStageGlobal = historyTableStage;
+			
 			historyTableStage.show();
 			
 			

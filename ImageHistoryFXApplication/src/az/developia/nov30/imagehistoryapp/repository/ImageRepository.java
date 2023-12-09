@@ -36,6 +36,30 @@ public class ImageRepository {
 		}
 
 	}
+	
+	public void deleteImage(Integer id) {
+		
+		conn = JDBCConnection.connect();
+		
+		String query = "DELETE FROM images WHERE id = "+id;
+		
+		try {
+			Statement statement = conn.createStatement();
+			
+			statement.execute(query);
+			System.out.println("DELETE: Image from database");
+			
+			statement.close();
+			conn.close();
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 	public void editImageTimesUsed(Integer imageId, Integer timesUsed) {
 
