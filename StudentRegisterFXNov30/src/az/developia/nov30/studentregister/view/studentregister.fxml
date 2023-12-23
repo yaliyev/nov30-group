@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: linear-gradient(to right, #a8ff78, #78ffd6);" prefHeight="548.0" prefWidth="847.0"  xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="115.0" layoutY="30.0" text="Ad:" textFill="#c99523">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField layoutX="163.0" layoutY="30.0" style="-fx-background: white; -fx-background-radius: 3px;" />
+      <Label layoutX="444.0" layoutY="30.0" text="Soyad:" textFill="#c99523">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField layoutX="512.0" layoutY="30.0" style="-fx-background: white; -fx-background-radius: 3px;" />
+      <Label layoutX="54.0" layoutY="80.0" text="Universitet:" textFill="#c99523">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField layoutX="163.0" layoutY="80.0" style="-fx-background: white; -fx-background-radius: 3px;" />
+      <Label layoutX="443.0" layoutY="80.0" text="İxtisas:" textFill="#c99523">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField layoutX="512.0" layoutY="80.0" style="-fx-background: white; -fx-background-radius: 3px;" />
+      <Label layoutX="293.0" layoutY="130.0" text="Kurs:" textFill="#c99523">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField layoutX="337.0" layoutY="130.0" style="-fx-background: white; -fx-background-radius: 3px;" />
+      <Button layoutX="237.0" layoutY="171.0" mnemonicParsing="false" style="-fx-background-color: #cac531;" text="Yeni tələbə əlavə et" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Button layoutX="385.0" layoutY="171.0" mnemonicParsing="false" style="-fx-background-color: #00f260;" text="Məlumatları redaktə et" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Button layoutX="554.0" layoutY="171.0" mnemonicParsing="false" style="-fx-background-color: #f4c4f3;" text="Sil" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <TextField layoutX="83.0" layoutY="172.0" style="-fx-background: white; -fx-background-radius: 3px;" />
+      <Label layoutX="14.0" layoutY="172.0" text="Axtarış:" textFill="#c99523">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Button layoutX="680.0" layoutY="172.0" mnemonicParsing="false" style="-fx-background-color: #0575e6;" text="Statusu dəyiş" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <TableView layoutX="-3.0" layoutY="216.0" prefHeight="334.0" prefWidth="854.0">
+        <columns>
+          <TableColumn prefWidth="54.3999924659729" text="ID" />
+            <TableColumn prefWidth="108.0" text="Ad" />
+            <TableColumn prefWidth="116.0" text="Soyad" />
+            <TableColumn prefWidth="172.79998779296875" text="Universitet" />
+            <TableColumn prefWidth="180.79998779296875" text="Ixtisas" />
+            <TableColumn prefWidth="96.79998779296875" text="Kurs" />
+            <TableColumn prefWidth="129.5999755859375" text="İmtahandan keçib" />
+        </columns>
+      </TableView>
+      <CheckBox layoutX="603.0" layoutY="176.0" mnemonicParsing="false" style="-fx-background-color: #E5E7E9;" />
+      <Label layoutX="627.0" layoutY="176.0" text="Hamısı" />
+   </children>
+</AnchorPane>
