@@ -123,5 +123,28 @@ public class StudentRepository {
 		
 	}
 	
+	public void deleteStudent(Integer whereINeedToDeleteStudentId) {
+		conn = DatabaseConnection.connect();
+		
+		try {
+			PreparedStatement statement = conn.prepareStatement("DELETE FROM studentsapp_students  WHERE id = ?");
+			
+			statement.setInt(1, whereINeedToDeleteStudentId);
+			
+			statement.executeUpdate();
+			
+			System.out.println("Student has been deleted");
+			
+			statement.close();
+			conn.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
 	
 }

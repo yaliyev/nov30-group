@@ -3,6 +3,8 @@ package az.developia.nov30.studentregister.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import az.developia.nov30.studentregister.model.Student;
 import az.developia.nov30.studentregister.repository.StudentRepository;
 import javafx.event.ActionEvent;
@@ -36,6 +38,9 @@ public class StudentController implements Initializable {
 	// CTRL + SHIFT + O
 	@FXML
 	private Button addStudentButton;
+	
+	@FXML
+	private Button deleteStudentButton;
 	
 	@FXML
 	private Button changeStatusButton;
@@ -108,6 +113,20 @@ public class StudentController implements Initializable {
 			warningsLabel.setText("Daxil edilən tələbə məlumatları formata uyğun deyil");
 		}
 
+	}
+	
+	@FXML
+	private void deleteStudentButtonClicked(ActionEvent event) {
+		Student selectedStudent = studentsTableView.getSelectionModel().getSelectedItem();
+		
+		if(selectedStudent != null) {
+       		int result = JOptionPane.showConfirmDialog(null,"Həqiqətən də "+selectedStudent.getName() + " " + selectedStudent.getSurname() + " adında olan tələbəni silmək istəyirsiniz?"
+       				,"Təsdiqlə",JOptionPane.YES_NO_OPTION);
+       		if(result == 0) {
+    			studentRepository.deleteStudent(selectedStudent.getId());
+    			loadStudents();
+       		}
+		}
 	}
 	
 	public void loadStudents() {

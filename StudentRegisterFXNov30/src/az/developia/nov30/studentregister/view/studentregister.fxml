@@ -51,7 +51,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="554.0" layoutY="171.0" mnemonicParsing="false" style="-fx-background-color: #f4c4f3;" text="Sil" textFill="WHITE">
+      <Button fx:id="deleteStudentButton" layoutX="554.0" layoutY="171.0" mnemonicParsing="false" onAction="#deleteStudentButtonClicked" style="-fx-background-color: #f4c4f3;" text="Sil" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
