@@ -78,7 +78,7 @@
             <TableColumn fx:id="passedExamColumn" prefWidth="129.5999755859375" text="İmtahandan keçib" />
         </columns>
       </TableView>
-      <CheckBox layoutX="603.0" layoutY="176.0" mnemonicParsing="false" style="-fx-background-color: #E5E7E9;" />
+      <CheckBox fx:id="allSelectedCheckBox" layoutX="603.0" layoutY="176.0" mnemonicParsing="false" style="-fx-background-color: #E5E7E9;" />
       <Label layoutX="627.0" layoutY="176.0" text="Hamısı" />
       <ComboBox fx:id="educationFieldComboBox" layoutX="512.0" layoutY="80.0" prefWidth="150.0" />
       <Button layoutX="385.0" layoutY="129.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="137.0" style="-fx-background-color: #cac531;" text="İxtisas əlavə et " textFill="WHITE">

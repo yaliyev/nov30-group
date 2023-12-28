@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -47,6 +48,9 @@ public class StudentController implements Initializable {
 
 	@FXML
 	private Label warningsLabel;
+	
+	@FXML
+	private CheckBox allSelectedCheckBox;
 	
 	@FXML
 	private TableView<Student> studentsTableView;
@@ -119,14 +123,25 @@ public class StudentController implements Initializable {
 	private void deleteStudentButtonClicked(ActionEvent event) {
 		Student selectedStudent = studentsTableView.getSelectionModel().getSelectedItem();
 		
-		if(selectedStudent != null) {
-       		int result = JOptionPane.showConfirmDialog(null,"Həqiqətən də "+selectedStudent.getName() + " " + selectedStudent.getSurname() + " adında olan tələbəni silmək istəyirsiniz?"
+		if(allSelectedCheckBox.isSelected()) {
+			int result = JOptionPane.showConfirmDialog(null,"Həqiqətən də bütün  tələbələrin silinməsinə razısınızmı?"
        				,"Təsdiqlə",JOptionPane.YES_NO_OPTION);
-       		if(result == 0) {
-    			studentRepository.deleteStudent(selectedStudent.getId());
-    			loadStudents();
-       		}
+			if(result == 0) {
+				studentRepository.deleteAllStudents();
+				loadStudents();
+			}
+		}else {
+			if(selectedStudent != null) {
+	       		int result = JOptionPane.showConfirmDialog(null,"Həqiqətən də "+selectedStudent.getName() + " " + selectedStudent.getSurname() + " adında olan tələbəni silmək istəyirsiniz?"
+	       				,"Təsdiqlə",JOptionPane.YES_NO_OPTION);
+	       		if(result == 0) {
+	    			studentRepository.deleteStudent(selectedStudent.getId());
+	    			loadStudents();
+	       		}
+			}
 		}
+		
+		
 	}
 	
 	public void loadStudents() {

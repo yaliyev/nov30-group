@@ -146,5 +146,27 @@ public class StudentRepository {
 		
 	}
 	
+	public void deleteAllStudents() {
+		conn = DatabaseConnection.connect();
+		
+		try {
+			PreparedStatement statement = conn.prepareStatement("TRUNCATE studentsapp_students");
+			
+			
+			statement.executeUpdate();
+			
+			System.out.println("All students have been deleted");
+			
+			statement.close();
+			conn.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
 	
 }
