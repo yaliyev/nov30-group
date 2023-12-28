@@ -18,6 +18,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 public class StudentController implements Initializable {
 
@@ -141,6 +142,20 @@ public class StudentController implements Initializable {
 			}
 		}
 		
+		
+	}
+	
+	@FXML
+	private void studentsTableViewMouseClicked(MouseEvent event) {
+		Student selectedStudent = studentsTableView.getSelectionModel().getSelectedItem();
+		
+		if(selectedStudent != null) {
+			 nameTextField.setText(selectedStudent.getName());
+			 surnameTextField.setText(selectedStudent.getSurname());
+			 universityTextField.setText(selectedStudent.getUniversity());
+			 educationFieldComboBox.setValue(selectedStudent.getEducationField());
+			 courseTextField.setText(selectedStudent.getCourse().toString()); 
+		}
 		
 	}
 	
