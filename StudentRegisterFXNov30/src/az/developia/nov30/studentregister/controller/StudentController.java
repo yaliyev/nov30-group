@@ -36,6 +36,9 @@ public class StudentController implements Initializable {
 	// CTRL + SHIFT + O
 	@FXML
 	private Button addStudentButton;
+	
+	@FXML
+	private Button changeStatusButton;
 
 	@FXML
 	private Label warningsLabel;
@@ -65,6 +68,23 @@ public class StudentController implements Initializable {
 	private TableColumn<Student, String> educationFieldColumn;
 
 	private final StudentRepository studentRepository = new StudentRepository();
+	
+	@FXML
+	private void changeStatusButtonClicked(ActionEvent event) {
+		Student selectedStudent = studentsTableView.getSelectionModel().getSelectedItem();
+		
+		if(selectedStudent != null) {
+			System.out.println(selectedStudent);
+			if(selectedStudent.getPassedExam().equals("Keçməyib")) {
+				selectedStudent.setPassedExam("Keçib");
+			}else {
+				selectedStudent.setPassedExam("Keçməyib");
+			}
+			studentRepository.updateStatus(selectedStudent.getId(), selectedStudent.getPassedExam());
+			loadStudents();
+		}
+		
+	}
 
 	@FXML
 	private void addStudentButtonClicked(ActionEvent event) {
@@ -108,6 +128,7 @@ public class StudentController implements Initializable {
 		universityColumn.setCellValueFactory(new PropertyValueFactory<>("university"));
 		educationFieldColumn.setCellValueFactory(new PropertyValueFactory<>("educationField"));
 		courseColumn.setCellValueFactory(new PropertyValueFactory<>("course"));
+		passedExamColumn.setCellValueFactory(new PropertyValueFactory<>("passedExam"));
 		
 		loadStudents();
 

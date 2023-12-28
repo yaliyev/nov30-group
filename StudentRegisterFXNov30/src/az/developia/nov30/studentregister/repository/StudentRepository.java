@@ -28,13 +28,14 @@ public class StudentRepository {
 //				statement2.execute("INSERT INTO studentsapp_students (name,surname,university,education_field,course) VALUES ("+ student.getName() +","+ student.getSurname() +","+ student.getUniversity() +","+ student.getEducationField() +","+ student.getCourse() +") ");
 				
 				
-				PreparedStatement statement = conn.prepareStatement("INSERT INTO studentsapp_students (name,surname,university,education_field,course) VALUES (?,?,?,?,?) ");
+				PreparedStatement statement = conn.prepareStatement("INSERT INTO studentsapp_students (name,surname,university,education_field,course,passed_exam) VALUES (?,?,?,?,?,?) ");
 				
 				statement.setString(1, student.getName());
 				statement.setString(2, student.getSurname());
 				statement.setString(3, student.getUniversity());
 				statement.setString(4,student.getEducationField());
 				statement.setInt(5, student.getCourse());
+				statement.setString(6, student.getPassedExam());
 				
 				statement.execute();
 				
@@ -66,6 +67,8 @@ public class StudentRepository {
 			
 			ResultSet studentsRS = statement.executeQuery();
 			
+			System.out.println("Students have been read");
+			
 			while(studentsRS.next()) {
 				
 				Student student = new Student(); // bosh bir student yaradilir ki,gelecekde resultsetdeki
@@ -76,6 +79,7 @@ public class StudentRepository {
 				student.setUniversity(studentsRS.getString("university"));
 				student.setEducationField(studentsRS.getString("education_field"));
 				student.setCourse(studentsRS.getInt("course"));
+				student.setPassedExam(studentsRS.getString("passed_exam"));
 				
 				list.add(student);
 				
@@ -93,6 +97,30 @@ public class StudentRepository {
 		
 		
 		return list;
+	}
+	
+	public void updateStatus(Integer whereINeedToChangeStudentId,String status) {
+		conn = DatabaseConnection.connect();
+		
+		try {
+			PreparedStatement statement = conn.prepareStatement("UPDATE studentsapp_students SET passed_exam = ? WHERE id = ?");
+			
+			statement.setString(1, status);
+			statement.setInt(2, whereINeedToChangeStudentId);
+			
+			statement.executeUpdate();
+			
+			System.out.println("Student has been updated");
+			
+			statement.close();
+			conn.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	}
 	
 	

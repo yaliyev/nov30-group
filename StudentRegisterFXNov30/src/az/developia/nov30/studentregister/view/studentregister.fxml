@@ -62,7 +62,7 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Button layoutX="680.0" layoutY="172.0" mnemonicParsing="false" style="-fx-background-color: #0575e6;" text="Statusu dəyiş" textFill="WHITE">
+      <Button fx:id="changeStatusButton" layoutX="680.0" layoutY="172.0" mnemonicParsing="false" onAction="#changeStatusButtonClicked" style="-fx-background-color: #0575e6;" text="Statusu dəyiş" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

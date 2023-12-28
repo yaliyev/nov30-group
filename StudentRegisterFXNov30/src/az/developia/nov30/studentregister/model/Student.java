@@ -21,7 +21,7 @@ public class Student {
 	
 	private Integer course;
 	
-	
+	private String passedExam;
 
 
 	public Student() {
@@ -40,6 +40,7 @@ public class Student {
 		this.university = university;
 		this.educationField = educationField;
 		this.course = course;
+		this.passedExam = "Keçməyib";
 	}
 
 
@@ -106,6 +107,26 @@ public class Student {
 	}
 
 
+    
+
+
+
+
+	public String getPassedExam() {
+		return passedExam;
+	}
+
+
+
+
+
+
+
+	public void setPassedExam(String passedExam) {
+		this.passedExam = passedExam;
+	}
+
+
 
 
 
@@ -121,11 +142,19 @@ public class Student {
 	}
 
 
+
+
+
+
+
 	@Override
 	public String toString() {
-		return "Student [name=" + name + ", surname=" + surname + ", university=" + university + ", education="
-				+ educationField + ", course=" + course + "]";
+		return "Student [id=" + id + ", name=" + name + ", surname=" + surname + ", university=" + university
+				+ ", educationField=" + educationField + ", course=" + course + ", passedExam=" + passedExam + "]";
 	}
+
+
+	
 //	
 	
 }
