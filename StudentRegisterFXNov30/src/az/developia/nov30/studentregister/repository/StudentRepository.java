@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 import az.developia.nov30.studentregister.connection.DatabaseConnection;
 import az.developia.nov30.studentregister.model.Student;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class StudentRepository {
 
@@ -53,9 +55,9 @@ public class StudentRepository {
 		
 	}
 	
-	public ArrayList<Student> getStudents() {
+	public ObservableList<Student> getStudents() {
 		
-		ArrayList<Student> list = new ArrayList<>();
+		ObservableList<Student> list = FXCollections.observableArrayList();
 		
 		conn = DatabaseConnection.connect();
 		

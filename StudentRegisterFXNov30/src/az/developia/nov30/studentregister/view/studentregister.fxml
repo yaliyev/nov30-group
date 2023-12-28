@@ -67,15 +67,15 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <TableView layoutX="-4.0" layoutY="239.0" prefHeight="334.0" prefWidth="854.0">
+      <TableView fx:id="studentsTableView" layoutX="-4.0" layoutY="239.0" prefHeight="334.0" prefWidth="854.0">
         <columns>
-          <TableColumn prefWidth="54.3999924659729" text="ID" />
-            <TableColumn prefWidth="108.0" text="Ad" />
-            <TableColumn prefWidth="116.0" text="Soyad" />
-            <TableColumn prefWidth="172.79998779296875" text="Universitet" />
-            <TableColumn prefWidth="180.79998779296875" text="Ixtisas" />
-            <TableColumn prefWidth="96.79998779296875" text="Kurs" />
-            <TableColumn prefWidth="129.5999755859375" text="İmtahandan keçib" />
+          <TableColumn fx:id="idColumn" prefWidth="54.3999924659729" text="ID" />
+            <TableColumn fx:id="nameColumn" prefWidth="108.0" text="Ad" />
+            <TableColumn fx:id="surnameColumn" prefWidth="116.0" text="Soyad" />
+            <TableColumn fx:id="universityColumn" prefWidth="172.79998779296875" text="Universitet" />
+            <TableColumn fx:id="educationFieldColumn" prefWidth="180.79998779296875" text="Ixtisas" />
+            <TableColumn fx:id="courseColumn" prefWidth="96.79998779296875" text="Kurs" />
+            <TableColumn fx:id="passedExamColumn" prefWidth="129.5999755859375" text="İmtahandan keçib" />
         </columns>
       </TableView>
       <CheckBox layoutX="603.0" layoutY="176.0" mnemonicParsing="false" style="-fx-background-color: #E5E7E9;" />
