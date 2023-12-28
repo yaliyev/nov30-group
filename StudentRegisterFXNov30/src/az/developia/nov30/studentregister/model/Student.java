@@ -16,7 +16,7 @@ public class Student {
 	private String university;
 	
 	
-	private String educationField;
+	private String educationField; 
 	
 	
 	private Integer course;

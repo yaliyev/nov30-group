@@ -1,6 +1,7 @@
 package az.developia.nov30.studentregister.controller;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import az.developia.nov30.studentregister.model.Student;
@@ -71,6 +72,7 @@ public class StudentController implements Initializable{
 		educationFieldComboBox.getItems().add("Hüquq");
 		educationFieldComboBox.getItems().add("Neft qaz mühəndisliyi");
 		
+	    System.out.println(studentRepository.getStudents());
 		
 	}
 	
