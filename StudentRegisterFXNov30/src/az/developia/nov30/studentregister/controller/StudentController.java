@@ -40,19 +40,25 @@ public class StudentController implements Initializable {
 	// CTRL + SHIFT + O
 	@FXML
 	private Button addStudentButton;
-	
+
+	@FXML
+	private Button editStudentButton;
+
 	@FXML
 	private Button deleteStudentButton;
-	
+
 	@FXML
 	private Button changeStatusButton;
+	
+	@FXML
+	private Button resetFormButton;
 
 	@FXML
 	private Label warningsLabel;
-	
+
 	@FXML
 	private CheckBox allSelectedCheckBox;
-	
+
 	@FXML
 	private TableView<Student> studentsTableView;
 
@@ -70,30 +76,30 @@ public class StudentController implements Initializable {
 
 	@FXML
 	private TableColumn<Student, String> universityColumn;
-	
+
 	@FXML
 	private TableColumn<Student, Integer> courseColumn;
-	
+
 	@FXML
 	private TableColumn<Student, String> educationFieldColumn;
 
 	private final StudentRepository studentRepository = new StudentRepository();
-	
+
 	@FXML
 	private void changeStatusButtonClicked(ActionEvent event) {
 		Student selectedStudent = studentsTableView.getSelectionModel().getSelectedItem();
-		
-		if(selectedStudent != null) {
+
+		if (selectedStudent != null) {
 			System.out.println(selectedStudent);
-			if(selectedStudent.getPassedExam().equals("Keçməyib")) {
+			if (selectedStudent.getPassedExam().equals("Keçməyib")) {
 				selectedStudent.setPassedExam("Keçib");
-			}else {
+			} else {
 				selectedStudent.setPassedExam("Keçməyib");
 			}
 			studentRepository.updateStatus(selectedStudent.getId(), selectedStudent.getPassedExam());
 			loadStudents();
 		}
-		
+
 	}
 
 	@FXML
@@ -114,53 +120,99 @@ public class StudentController implements Initializable {
 			studentRepository.addStudent(student);
 			warningsLabel.setText("Hələki heç nə yoxdur");
 			loadStudents();
+			resetForm();
 		} else {
 			warningsLabel.setText("Daxil edilən tələbə məlumatları formata uyğun deyil");
 		}
 
 	}
-	
+
+	@FXML
+	private void editStudentButtonClicked(ActionEvent event) {
+		
+		Student selectedStudent = studentsTableView.getSelectionModel().getSelectedItem();
+		
+		String name = nameTextField.getText();
+		String surname = surnameTextField.getText();
+		String university = universityTextField.getText();
+		String educationField = educationFieldComboBox.getValue();
+		String courseString = courseTextField.getText(); // getText() -> string
+		Integer course = 0;
+
+		if (!courseString.isBlank()) {
+			course = Integer.parseInt(courseString);
+		}
+		if (name.trim().length() > 0 && surname.trim().length() > 0 && university.trim().length() > 0
+				&& educationField.trim().length() > 0 && course > 0) {
+			
+			Student student = new Student(name, surname, university, educationField, course);
+			
+			studentRepository.updateStudent(selectedStudent.getId(), student);
+			warningsLabel.setText("Hələki heç nə yoxdur");
+			loadStudents();
+			resetForm();	
+		} else {
+			warningsLabel.setText("Daxil edilən tələbə məlumatları formata uyğun deyil");
+		}
+	}
+
 	@FXML
 	private void deleteStudentButtonClicked(ActionEvent event) {
 		Student selectedStudent = studentsTableView.getSelectionModel().getSelectedItem();
-		
-		if(allSelectedCheckBox.isSelected()) {
-			int result = JOptionPane.showConfirmDialog(null,"Həqiqətən də bütün  tələbələrin silinməsinə razısınızmı?"
-       				,"Təsdiqlə",JOptionPane.YES_NO_OPTION);
-			if(result == 0) {
+
+		if (allSelectedCheckBox.isSelected()) {
+			int result = JOptionPane.showConfirmDialog(null, "Həqiqətən də bütün  tələbələrin silinməsinə razısınızmı?",
+					"Təsdiqlə", JOptionPane.YES_NO_OPTION);
+			if (result == 0) {
 				studentRepository.deleteAllStudents();
 				loadStudents();
 			}
-		}else {
-			if(selectedStudent != null) {
-	       		int result = JOptionPane.showConfirmDialog(null,"Həqiqətən də "+selectedStudent.getName() + " " + selectedStudent.getSurname() + " adında olan tələbəni silmək istəyirsiniz?"
-	       				,"Təsdiqlə",JOptionPane.YES_NO_OPTION);
-	       		if(result == 0) {
-	    			studentRepository.deleteStudent(selectedStudent.getId());
-	    			loadStudents();
-	       		}
+		} else {
+			if (selectedStudent != null) {
+				int result = JOptionPane
+						.showConfirmDialog(null,
+								"Həqiqətən də " + selectedStudent.getName() + " " + selectedStudent.getSurname()
+										+ " adında olan tələbəni silmək istəyirsiniz?",
+								"Təsdiqlə", JOptionPane.YES_NO_OPTION);
+				if (result == 0) {
+					studentRepository.deleteStudent(selectedStudent.getId());
+					loadStudents();
+				}
 			}
 		}
-		
-		
+		resetForm();
+
 	}
 	
 	@FXML
+	private void resetFormButtonClicked(ActionEvent event) {
+		resetForm();
+	}
+
+	@FXML
 	private void studentsTableViewMouseClicked(MouseEvent event) {
 		Student selectedStudent = studentsTableView.getSelectionModel().getSelectedItem();
-		
-		if(selectedStudent != null) {
-			 nameTextField.setText(selectedStudent.getName());
-			 surnameTextField.setText(selectedStudent.getSurname());
-			 universityTextField.setText(selectedStudent.getUniversity());
-			 educationFieldComboBox.setValue(selectedStudent.getEducationField());
-			 courseTextField.setText(selectedStudent.getCourse().toString()); 
+
+		if (selectedStudent != null) {
+			nameTextField.setText(selectedStudent.getName());
+			surnameTextField.setText(selectedStudent.getSurname());
+			universityTextField.setText(selectedStudent.getUniversity());
+			educationFieldComboBox.setValue(selectedStudent.getEducationField());
+			courseTextField.setText(selectedStudent.getCourse().toString());
 		}
-		
+
 	}
-	
+
 	public void loadStudents() {
 		studentsTableView.setItems(studentRepository.getStudents());
+	}
+	
+	public void resetForm() {
+		 nameTextField.setText("");
+		 surnameTextField.setText("");
+		 universityTextField.setText("");
+		 educationFieldComboBox.setValue("");
+		 courseTextField.setText(""); 
 	}
 
 	@Override
@@ -178,7 +230,7 @@ public class StudentController implements Initializable {
 		educationFieldColumn.setCellValueFactory(new PropertyValueFactory<>("educationField"));
 		courseColumn.setCellValueFactory(new PropertyValueFactory<>("course"));
 		passedExamColumn.setCellValueFactory(new PropertyValueFactory<>("passedExam"));
-		
+
 		loadStudents();
 
 	}

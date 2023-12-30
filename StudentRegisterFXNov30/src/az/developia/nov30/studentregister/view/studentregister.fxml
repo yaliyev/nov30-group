@@ -46,7 +46,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="385.0" layoutY="171.0" mnemonicParsing="false" style="-fx-background-color: #00f260;" text="Məlumatları redaktə et" textFill="WHITE">
+      <Button fx:id="editStudentButton" layoutX="385.0" layoutY="171.0" mnemonicParsing="false" onAction="#editStudentButtonClicked" style="-fx-background-color: #00f260;" text="Məlumatları redaktə et" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -101,5 +101,10 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
+      <Button fx:id="resetFormButton" layoutX="680.0" layoutY="129.0" mnemonicParsing="false" onAction="#resetFormButtonClicked" style="-fx-background-color: #00f260;" text="Sıfırla" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

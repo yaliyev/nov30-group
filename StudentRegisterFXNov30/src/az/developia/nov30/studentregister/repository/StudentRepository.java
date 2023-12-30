@@ -99,6 +99,32 @@ public class StudentRepository {
 		return list;
 	}
 	
+	public void updateStudent(Integer whereINeedToEditStudentId,Student student) {
+		conn = DatabaseConnection.connect();
+		
+		try {
+			PreparedStatement statement = conn.prepareStatement("UPDATE studentsapp_students SET name = ?,surname = ?,university = ?,education_field = ?,course = ? WHERE id = ?");
+			
+			statement.setString(1, student.getName());
+			statement.setString(2, student.getSurname());
+			statement.setString(3, student.getUniversity());
+			statement.setString(4, student.getEducationField());
+			statement.setInt(5, student.getCourse());
+			statement.setInt(6, whereINeedToEditStudentId);
+			
+			statement.executeUpdate();
+			
+			System.out.println("Student status has been updated");
+			
+		    statement.close();
+		    conn.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void updateStatus(Integer whereINeedToChangeStudentId,String status) {
 		conn = DatabaseConnection.connect();
 		
@@ -110,7 +136,7 @@ public class StudentRepository {
 			
 			statement.executeUpdate();
 			
-			System.out.println("Student has been updated");
+			System.out.println("Student status has been updated");
 			
 			statement.close();
 			conn.close();
