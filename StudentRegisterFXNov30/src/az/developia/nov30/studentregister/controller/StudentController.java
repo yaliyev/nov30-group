@@ -5,7 +5,9 @@ import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
+import az.developia.nov30.studentregister.model.EducationField;
 import az.developia.nov30.studentregister.model.Student;
+import az.developia.nov30.studentregister.repository.EducationFieldRepository;
 import az.developia.nov30.studentregister.repository.StudentRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,7 +34,7 @@ public class StudentController implements Initializable {
 	private TextField universityTextField;
 
 	@FXML
-	private ComboBox<String> educationFieldComboBox;
+	private ComboBox<EducationField> educationFieldComboBox;
 
 	@FXML
 	private TextField courseTextField;
@@ -49,6 +51,12 @@ public class StudentController implements Initializable {
 
 	@FXML
 	private Button changeStatusButton;
+	
+	@FXML
+	private Button addEducationFieldButton;
+	
+	@FXML
+	private Button deleteEducationFieldButton;
 	
 	@FXML
 	private Button resetFormButton;
@@ -84,6 +92,38 @@ public class StudentController implements Initializable {
 	private TableColumn<Student, String> educationFieldColumn;
 
 	private final StudentRepository studentRepository = new StudentRepository();
+	
+	private final EducationFieldRepository educationFieldRepository = new EducationFieldRepository();
+	
+	@FXML
+	private void addEducationFieldButtonClicked(ActionEvent event) {
+		String educationFieldName = JOptionPane.showInputDialog("İxtisas adını daxil edin");
+		
+		if(educationFieldName != null) {
+			educationFieldRepository.addEducationField(new EducationField(educationFieldName));;
+			
+			loadEducationFields();
+		}
+		
+	
+	}
+	
+	@FXML
+	private void deleteEducationFieldButtonClicked(ActionEvent event) {
+		EducationField selectedEducationField = educationFieldComboBox.getSelectionModel().getSelectedItem();
+		
+		if(selectedEducationField != null) {
+			int result = JOptionPane.showConfirmDialog(null,
+							"Həqiqətən də " + selectedEducationField
+									+ " adında olan ixtisası silmək istəyirsiniz?",
+							"Təsdiqlə", JOptionPane.YES_NO_OPTION);
+			
+			if(result == 0) {
+				educationFieldRepository.deleteEducationField(selectedEducationField.toString());
+				loadEducationFields();
+			}
+		}
+	}
 
 	@FXML
 	private void changeStatusButtonClicked(ActionEvent event) {
@@ -107,7 +147,7 @@ public class StudentController implements Initializable {
 		String name = nameTextField.getText();
 		String surname = surnameTextField.getText();
 		String university = universityTextField.getText();
-		String educationField = educationFieldComboBox.getValue();
+		EducationField educationField = educationFieldComboBox.getValue();
 		String courseString = courseTextField.getText(); // getText() -> string
 		Integer course = 0;
 		if (courseString.isBlank() == false) {
@@ -115,7 +155,7 @@ public class StudentController implements Initializable {
 		}
 
 		if (name.trim().length() > 0 && surname.trim().length() > 0 && university.trim().length() > 0
-				&& educationField.trim().length() > 0 && course > 0) {
+				&& educationField.toString().length() > 0 && course > 0) {
 			Student student = new Student(name, surname, university, educationField, course);
 			studentRepository.addStudent(student);
 			warningsLabel.setText("Hələki heç nə yoxdur");
@@ -135,7 +175,7 @@ public class StudentController implements Initializable {
 		String name = nameTextField.getText();
 		String surname = surnameTextField.getText();
 		String university = universityTextField.getText();
-		String educationField = educationFieldComboBox.getValue();
+		EducationField educationField = educationFieldComboBox.getValue();
 		String courseString = courseTextField.getText(); // getText() -> string
 		Integer course = 0;
 
@@ -143,7 +183,7 @@ public class StudentController implements Initializable {
 			course = Integer.parseInt(courseString);
 		}
 		if (name.trim().length() > 0 && surname.trim().length() > 0 && university.trim().length() > 0
-				&& educationField.trim().length() > 0 && course > 0) {
+				&& educationField.toString().trim().length() > 0 && course > 0) {
 			
 			Student student = new Student(name, surname, university, educationField, course);
 			
@@ -207,21 +247,25 @@ public class StudentController implements Initializable {
 		studentsTableView.setItems(studentRepository.getStudents());
 	}
 	
+	public void loadEducationFields() {
+		educationFieldComboBox.setItems(educationFieldRepository.getAllEducationFields());
+	}
+	
 	public void resetForm() {
 		 nameTextField.setText("");
 		 surnameTextField.setText("");
 		 universityTextField.setText("");
-		 educationFieldComboBox.setValue("");
+		 educationFieldComboBox.setValue(null);
 		 courseTextField.setText(""); 
 	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		educationFieldComboBox.getItems().add("IT");
-		educationFieldComboBox.getItems().add("Tibb");
-		educationFieldComboBox.getItems().add("Mühasibatlıq");
-		educationFieldComboBox.getItems().add("Hüquq");
-		educationFieldComboBox.getItems().add("Neft qaz mühəndisliyi");
+//		educationFieldComboBox.getItems().add("IT");
+//		educationFieldComboBox.getItems().add("Tibb");
+//		educationFieldComboBox.getItems().add("Mühasibatlıq");
+//		educationFieldComboBox.getItems().add("Hüquq");
+//		educationFieldComboBox.getItems().add("Neft qaz mühəndisliyi");
 
 		idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
 		nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -232,6 +276,8 @@ public class StudentController implements Initializable {
 		passedExamColumn.setCellValueFactory(new PropertyValueFactory<>("passedExam"));
 
 		loadStudents();
+		
+		loadEducationFields();
 
 	}
 

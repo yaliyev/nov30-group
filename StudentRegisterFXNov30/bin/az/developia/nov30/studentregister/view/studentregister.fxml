@@ -81,12 +81,12 @@
       <CheckBox fx:id="allSelectedCheckBox" layoutX="603.0" layoutY="176.0" mnemonicParsing="false" style="-fx-background-color: #E5E7E9;" />
       <Label layoutX="627.0" layoutY="176.0" text="Hamısı" />
       <ComboBox fx:id="educationFieldComboBox" layoutX="512.0" layoutY="80.0" prefWidth="150.0" />
-      <Button layoutX="385.0" layoutY="129.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="137.0" style="-fx-background-color: #cac531;" text="İxtisas əlavə et " textFill="WHITE">
+      <Button fx:id="addEducationFieldButton" layoutX="385.0" layoutY="129.0" mnemonicParsing="false" onAction="#addEducationFieldButtonClicked" prefHeight="27.0" prefWidth="137.0" style="-fx-background-color: #cac531;" text="İxtisas əlavə et " textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="550.0" layoutY="129.0" mnemonicParsing="false" style="-fx-background-color: #00f260;" text="İxtisas sil" textFill="WHITE">
+      <Button fx:id="deleteEducationFieldButton" layoutX="550.0" layoutY="129.0" mnemonicParsing="false" onAction="#deleteEducationFieldButtonClicked" style="-fx-background-color: #00f260;" text="İxtisas sil" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

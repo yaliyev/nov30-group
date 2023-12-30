@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import az.developia.nov30.studentregister.connection.DatabaseConnection;
+import az.developia.nov30.studentregister.model.EducationField;
 import az.developia.nov30.studentregister.model.Student;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,7 +34,7 @@ public class StudentRepository {
 				statement.setString(1, student.getName());
 				statement.setString(2, student.getSurname());
 				statement.setString(3, student.getUniversity());
-				statement.setString(4,student.getEducationField());
+				statement.setString(4,student.getEducationField().toString());
 				statement.setInt(5, student.getCourse());
 				statement.setString(6, student.getPassedExam());
 				
@@ -77,7 +78,7 @@ public class StudentRepository {
 				student.setName(studentsRS.getString("name"));
 				student.setSurname(studentsRS.getString("surname"));
 				student.setUniversity(studentsRS.getString("university"));
-				student.setEducationField(studentsRS.getString("education_field"));
+				student.setEducationField(new EducationField(studentsRS.getString("education_field")));
 				student.setCourse(studentsRS.getInt("course"));
 				student.setPassedExam(studentsRS.getString("passed_exam"));
 				
@@ -108,7 +109,7 @@ public class StudentRepository {
 			statement.setString(1, student.getName());
 			statement.setString(2, student.getSurname());
 			statement.setString(3, student.getUniversity());
-			statement.setString(4, student.getEducationField());
+			statement.setString(4, student.getEducationField().toString());
 			statement.setInt(5, student.getCourse());
 			statement.setInt(6, whereINeedToEditStudentId);
 			

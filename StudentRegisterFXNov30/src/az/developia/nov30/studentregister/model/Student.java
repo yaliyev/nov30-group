@@ -16,7 +16,7 @@ public class Student {
 	private String university;
 	
 	
-	private String educationField; 
+	private EducationField educationField; 
 	
 	
 	private Integer course;
@@ -34,7 +34,7 @@ public class Student {
 
 
 
-	public Student(String name, String surname, String university, String educationField, Integer course) {
+	public Student(String name, String surname, String university, EducationField educationField, Integer course) {
 		this.name = name;
 		this.surname = surname;
 		this.university = university;
@@ -98,16 +98,29 @@ public class Student {
 
 	
 
-	public String getEducationField() {
+	
+
+    
+
+
+
+
+	public EducationField getEducationField() {
 		return educationField;
 	}
 
-	public void setEducationField(String educationField) {
+
+
+
+
+
+
+	public void setEducationField(EducationField educationField) {
 		this.educationField = educationField;
 	}
 
 
-    
+
 
 
 
