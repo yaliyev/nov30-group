@@ -110,7 +110,7 @@ public ObservableList<Student> searchStudents(String search) {
 		try {
 			Statement statement = conn.createStatement();
 			
-			ResultSet studentsRS = statement.executeQuery("SELECT * FROM studentsapp_students  WHERE id LIKE '%"+search+"%' OR name LIKE '%"+search+"%' OR surname LIKE '%"+search+"%'  ");
+			ResultSet studentsRS = statement.executeQuery("SELECT * FROM studentsapp_students  WHERE id LIKE '%"+search+"%' OR name LIKE '%"+search+"%' OR surname LIKE '%"+search+"%' OR passed_exam LIKE '%"+search+"%'  ");
 			
 			System.out.println("Students have been searched");
 			

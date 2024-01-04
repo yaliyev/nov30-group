@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -94,10 +95,31 @@ public class StudentController implements Initializable {
 
 	@FXML
 	private TableColumn<Student, String> educationFieldColumn;
+	
+	@FXML
+	private RadioButton allSelectedRadioButton;
+	
+	@FXML
+	private RadioButton studentsWhoPassedExamRadioButton;
+	
+	@FXML
+	private RadioButton studentsWhoNotPassedExamRadioButton;
 
 	private final StudentRepository studentRepository = new StudentRepository();
 
 	private final EducationFieldRepository educationFieldRepository = new EducationFieldRepository();
+	
+	@FXML
+	private void passedExamRadioButtonClicked(ActionEvent event) {
+		RadioButton clickedRadioButton = (RadioButton) event.getTarget();
+		if(clickedRadioButton.getText().equals("Hamısı")) {
+			loadStudents();
+		}else if(clickedRadioButton.getText().equals("İmtahandan keçənlər")) {
+			searchStudents("Keçib");
+		}else {
+			searchStudents("Keçməyib");
+		}
+	}
 
 	@FXML
 	private void addEducationFieldButtonClicked(ActionEvent event) {
