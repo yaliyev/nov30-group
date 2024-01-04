@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import az.developia.nov30.studentregister.connection.DatabaseConnection;
@@ -69,6 +70,49 @@ public class StudentRepository {
 			ResultSet studentsRS = statement.executeQuery();
 			
 			System.out.println("Students have been read");
+			
+			while(studentsRS.next()) {
+				
+				Student student = new Student(); // bosh bir student yaradilir ki,gelecekde resultsetdeki
+				                                 // data bir bir studentin propertylerine set edile bilinsin
+				student.setId(studentsRS.getInt("id"));
+				student.setName(studentsRS.getString("name"));
+				student.setSurname(studentsRS.getString("surname"));
+				student.setUniversity(studentsRS.getString("university"));
+				student.setEducationField(new EducationField(studentsRS.getString("education_field")));
+				student.setCourse(studentsRS.getInt("course"));
+				student.setPassedExam(studentsRS.getString("passed_exam"));
+				
+				list.add(student);
+				
+			}
+			
+			studentsRS.close();
+			statement.close();
+			conn.close();
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return list;
+	}
+	
+public ObservableList<Student> searchStudents(String search) {
+		
+		ObservableList<Student> list = FXCollections.observableArrayList();
+		
+		conn = DatabaseConnection.connect();
+		
+		try {
+			Statement statement = conn.createStatement();
+			
+			ResultSet studentsRS = statement.executeQuery("SELECT * FROM studentsapp_students  WHERE id LIKE '%"+search+"%' OR name LIKE '%"+search+"%' OR surname LIKE '%"+search+"%'  ");
+			
+			System.out.println("Students have been searched");
 			
 			while(studentsRS.next()) {
 				

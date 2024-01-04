@@ -56,7 +56,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <TextField layoutX="83.0" layoutY="172.0" style="-fx-background: white; -fx-background-radius: 3px;" />
+      <TextField fx:id="searchTextField" layoutX="83.0" layoutY="172.0" onKeyReleased="#searchTextFieldKeyReleased" style="-fx-background: white; -fx-background-radius: 3px;" />
       <Label layoutX="14.0" layoutY="172.0" text="Axtarış:" textFill="#c99523">
          <font>
             <Font name="System Bold" size="16.0" />
