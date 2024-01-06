@@ -9,12 +9,12 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -30,7 +30,7 @@
          </children>
       </Pane>
       <Pane layoutY="671.0" prefHeight="30.0" prefWidth="1100.0" style="-fx-background-color: orange;" />
-      <ImageView fitHeight="107.0" fitWidth="189.0" layoutX="39.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="productImageView" fitHeight="107.0" fitWidth="189.0" layoutX="39.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/question.png" />
          </image>
@@ -40,7 +40,7 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="360.0" layoutY="45.0" />
+      <TextField fx:id="productNameTF" layoutX="360.0" layoutY="45.0" />
       <Label layoutX="525.0" layoutY="48.0" text="Məhsulun növü:">
          <font>
             <Font name="System Bold" size="14.0" />
@@ -51,8 +51,8 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="946.0" layoutY="45.0" prefHeight="26.0" prefWidth="98.0" />
-      <ComboBox layoutX="651.0" layoutY="45.0" prefWidth="150.0" />
+      <TextField fx:id="productQuantityTF" layoutX="946.0" layoutY="45.0" prefHeight="26.0" prefWidth="98.0" />
+      <ComboBox fx:id="productCategoryCB" layoutX="651.0" layoutY="45.0" prefWidth="150.0" />
       <Label layoutX="242.0" layoutY="104.0" text="Anbara daxil olma tarixi:">
          <font>
             <Font name="System Bold" size="14.0" />
@@ -63,51 +63,51 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <DatePicker layoutX="411.0" layoutY="101.0" prefHeight="26.0" prefWidth="98.0" />
-      <TextField layoutX="596.0" layoutY="101.0" prefHeight="26.0" prefWidth="93.0" />
-      <Button layoutX="708.0" layoutY="102.0" mnemonicParsing="false" style="-fx-background-color: linear-gradient(to right, #00b09b, #96c93d);;" text="Daxil et" textFill="WHITE">
+      <DatePicker fx:id="productStorageArrivingDP" layoutX="411.0" layoutY="101.0" prefHeight="26.0" prefWidth="98.0" />
+      <TextField fx:id="productPriceTF" layoutX="596.0" layoutY="101.0" prefHeight="26.0" prefWidth="93.0" />
+      <Button fx:id="insertProductButton" layoutX="708.0" layoutY="102.0" mnemonicParsing="false" onAction="#insertProductButtonClicked" style="-fx-background-color: linear-gradient(to right, #00b09b, #96c93d);;" text="Daxil et" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="796.0" layoutY="102.0" mnemonicParsing="false" style="-fx-background-color: linear-gradient(to right, #00b09b, #96c93d);;" text="Redaktə et" textFill="WHITE">
+      <Button fx:id="updateProductButton" layoutX="796.0" layoutY="102.0" mnemonicParsing="false" onAction="#updateProductButtonClicked" style="-fx-background-color: linear-gradient(to right, #00b09b, #96c93d);;" text="Redaktə et" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="904.0" layoutY="102.0" mnemonicParsing="false" style="-fx-background-color: linear-gradient(to right, #00b09b, #96c93d);;" text="Sil" textFill="WHITE">
+      <Button fx:id="deleteProductButton" layoutX="904.0" layoutY="102.0" mnemonicParsing="false" onAction="#deleteProductButtonClicked" style="-fx-background-color: linear-gradient(to right, #00b09b, #96c93d);;" text="Sil" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <CheckBox layoutX="959.0" layoutY="107.0" mnemonicParsing="false" text="Hamısı" />
+      <CheckBox fx:id="allSelectedCheckBox" layoutX="959.0" layoutY="107.0" mnemonicParsing="false" text="Hamısı" />
       <Label layoutX="63.0" layoutY="162.0" text="Axtar:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Button layoutX="374.0" layoutY="160.0" mnemonicParsing="false" style="-fx-background-color: linear-gradient(to right, #00b09b, #96c93d);;" text="Kateqoriya əlavə et" textFill="WHITE">
+      <Button fx:id="insertCategoryButton" layoutX="374.0" layoutY="160.0" mnemonicParsing="false" onAction="#insertCategoryButtonClicked" style="-fx-background-color: linear-gradient(to right, #00b09b, #96c93d);;" text="Kateqoriya əlavə et" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="648.0" layoutY="160.0" mnemonicParsing="false" style="-fx-background-color: linear-gradient(to right, #00b09b, #96c93d);;" text="Formu təmizlə" textFill="WHITE">
+      <Button fx:id="resetFormButton" layoutX="648.0" layoutY="160.0" mnemonicParsing="false" onAction="#resetFormButtonClicked" style="-fx-background-color: linear-gradient(to right, #00b09b, #96c93d);;" text="Formu təmizlə" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="525.0" layoutY="160.0" mnemonicParsing="false" style="-fx-background-color: linear-gradient(to right, #00b09b, #96c93d);;" text="Kateqoriyanı sil" textFill="WHITE">
+      <Button fx:id="deleteCategoryButton" layoutX="525.0" layoutY="160.0" mnemonicParsing="false" onAction="#deleteCategoryButtonClicked" style="-fx-background-color: linear-gradient(to right, #00b09b, #96c93d);;" text="Kateqoriyanı sil" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <TextField layoutX="116.0" layoutY="159.0" prefHeight="26.0" prefWidth="222.0" promptText="Nəsə axtar" />
-      <Button layoutX="763.0" layoutY="160.0" mnemonicParsing="false" style="-fx-background-color: linear-gradient(to right, #00b09b, #96c93d);;" text="Statusu dəyiş" textFill="WHITE">
+      <TextField fx:id="searchProductTF" layoutX="116.0" layoutY="159.0" prefHeight="26.0" prefWidth="222.0" promptText="Nəsə axtar" />
+      <Button fx:id="changeStatusButton" layoutX="763.0" layoutY="160.0" mnemonicParsing="false" onAction="#changeStatusButtonClicked" style="-fx-background-color: linear-gradient(to right, #00b09b, #96c93d);;" text="Statusu dəyiş" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
-      <Button layoutX="870.0" layoutY="160.0" mnemonicParsing="false" style="-fx-background-color: linear-gradient(to right, #00b09b, #96c93d);;" text="Məhsulun şəklini yüklə" textFill="WHITE">
+      <Button fx:id="uploadImageButton" layoutX="870.0" layoutY="160.0" mnemonicParsing="false" onAction="#uploadImageButtonClicked" style="-fx-background-color: linear-gradient(to right, #00b09b, #96c93d);;" text="Məhsulun şəklini yüklə" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -116,26 +116,29 @@
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="atStorageRadioButtonToggler" />
+         </toggleGroup>
       </RadioButton>
-      <RadioButton layoutX="456.0" layoutY="217.0" mnemonicParsing="false" text="Anbardakı məhsullar">
+      <RadioButton layoutX="456.0" layoutY="217.0" mnemonicParsing="false" text="Anbardakı məhsullar" toggleGroup="$atStorageRadioButtonToggler">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton layoutX="647.0" layoutY="217.0" mnemonicParsing="false" text="Göndərilənlər">
+      <RadioButton layoutX="647.0" layoutY="217.0" mnemonicParsing="false" text="Göndərilənlər" toggleGroup="$atStorageRadioButtonToggler">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </RadioButton>
-      <TableView layoutX="29.0" layoutY="263.0" prefHeight="408.0" prefWidth="1042.0">
+      <TableView fx:id="productsTableView" layoutX="29.0" layoutY="263.0" prefHeight="408.0" prefWidth="1042.0">
         <columns>
-          <TableColumn prefWidth="78.39999008178711" text="ID" />
-          <TableColumn prefWidth="319.2000274658203" text="Ad" />
-            <TableColumn prefWidth="244.0" text="Kateqoriya" />
-            <TableColumn prefWidth="71.19999694824219" text="Say" />
-            <TableColumn prefWidth="121.5999755859375" text="Daxil olma tarixi" />
-            <TableColumn prefWidth="124.800048828125" text="Qiymət" />
-            <TableColumn prefWidth="85.60009765625" text="Anbardadır?" />
+          <TableColumn fx:id="idCol" prefWidth="78.39999008178711" text="ID" />
+          <TableColumn fx:id="nameCol" prefWidth="319.2000274658203" text="Ad" />
+            <TableColumn fx:id="categoryCol" prefWidth="244.0" text="Kateqoriya" />
+            <TableColumn fx:id="quantityCol" prefWidth="71.19999694824219" text="Say" />
+            <TableColumn fx:id="arrivalDateCol" prefWidth="121.5999755859375" text="Daxil olma tarixi" />
+            <TableColumn fx:id="priceCol" prefWidth="124.800048828125" text="Qiymət" />
+            <TableColumn fx:id="atStorageCol" prefWidth="85.60009765625" text="Anbardadır?" />
         </columns>
       </TableView>
    </children>
