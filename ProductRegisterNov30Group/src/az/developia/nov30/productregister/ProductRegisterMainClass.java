@@ -3,6 +3,7 @@ package az.developia.nov30.productregister;
 import java.io.IOException;
 
 import az.developia.nov30.productregister.connection.JDBCConnection;
+import az.developia.nov30.productregister.repository.ProductRepository;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
