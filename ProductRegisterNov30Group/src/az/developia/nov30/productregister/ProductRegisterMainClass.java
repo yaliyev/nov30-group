@@ -3,6 +3,7 @@ package az.developia.nov30.productregister;
 import java.io.IOException;
 
 import az.developia.nov30.productregister.connection.JDBCConnection;
+import az.developia.nov30.productregister.log.LogWriter;
 import az.developia.nov30.productregister.repository.ProductRepository;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +14,9 @@ import javafx.stage.Stage;
 public class ProductRegisterMainClass extends Application{
 	public static void main(String[] args) {
 		launch(args);
-		JDBCConnection.connect();
+		ProductRepository repository = new ProductRepository();
+		
+		repository.getAllProducts();
 	}
 
 	@Override

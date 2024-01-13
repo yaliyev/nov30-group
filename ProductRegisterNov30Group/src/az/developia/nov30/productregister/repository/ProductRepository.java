@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import az.developia.nov30.productregister.connection.JDBCConnection;
+import az.developia.nov30.productregister.log.LogWriter;
 import az.developia.nov30.productregister.model.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,7 +36,8 @@ public class ProductRepository {
 
 			statement.execute();
 
-			System.out.println("CREATE: PRODUCT");
+			
+			LogWriter.write("CREATE: PRODUCT");
 
 			statement.close();
 			conn.close();
@@ -56,7 +58,9 @@ public class ProductRepository {
 
 			ResultSet rs = statement.executeQuery();
 
-			System.out.println("READ: PRODUCT");
+			
+			
+			LogWriter.write("READ: PRODUCT");
 
 			while (rs.next()) {
 				Product product = new Product();
@@ -94,8 +98,8 @@ public class ProductRepository {
 			Statement statement = conn.createStatement();
 
 			ResultSet rs = statement.executeQuery("SELECT * FROM productregister_products WHERE id LIKE "+searchString+" OR name LIKE '"+searchString+"' OR category LIKE '"+searchString+"' OR quantity LIKE '"+searchString+"' OR price LIKE '"+searchString+"' OR arrival_date LIKE '"+searchString+"' ");
-
-			System.out.println("SEARCH: PRODUCT");
+			
+			LogWriter.write("SEARCH: PRODUCT");
 
 			while (rs.next()) {
 				Product product = new Product();
@@ -137,8 +141,8 @@ public class ProductRepository {
 			statement.setInt(2, whichProductWillBeUpdatedId);
 
 			statement.executeUpdate();
-
-			System.out.println("UPDATE: PRODUCT STATUS");
+			
+			LogWriter.write("UPDATE: PRODUCT STATUS");
 
 			statement.close();
 			conn.close();
@@ -167,8 +171,8 @@ public class ProductRepository {
 			statement.setInt(8, whichProductWillBeUpdatedId);
 
 			statement.executeUpdate();
-
-			System.out.println("UPDATE: PRODUCT");
+			
+			LogWriter.write("UPDATE: PRODUCT");
 
 			statement.close();
 			conn.close();
@@ -190,7 +194,8 @@ public class ProductRepository {
 
 			statement.executeUpdate();
 
-			System.out.println("DELETE: PRODUCT");
+			
+			LogWriter.write("DELETE: PRODUCT");
 
 			statement.close();
 			conn.close();
@@ -208,7 +213,7 @@ public class ProductRepository {
 
 			statement.executeUpdate();
 
-			System.out.println("TRUNCATE: PRODUCT");
+			LogWriter.write("TRUNCATE: PRODUCT");
 
 			statement.close();
 			conn.close();
